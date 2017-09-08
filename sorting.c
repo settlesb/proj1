@@ -1,5 +1,5 @@
 #include  <stdio.h>
-void printArray(int arr[], int n);
+void printArray(long arr[], int n);
 void bubbleSort(int arr[], int n);
 void swap(long *xp, long *yp);
 void Shell_Insertion_Sort (long *Array, int Size, double *NComp, double *NMove);
@@ -11,11 +11,11 @@ void Save_Seq2 (char *Filename, int N);
 
 void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
 {
-
-    for (int gap = Size/2; gap > 0; gap /= 2)
+    int gap, i;
+    for (gap = Size/2; gap > 0; gap /= 2)
     {
 
-        for (int i = gap; i < Size; i += 1)
+        for (i = gap; i < Size; i += 1)
         {
             long temp = Array[i];
 
@@ -23,6 +23,7 @@ void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
             for (j = i; j >= gap && Array[j - gap] > temp; j -= gap)
             {
                 Array[j] = Array[j - gap];
+                NMove++;
             }
              
             Array[j] = temp;
