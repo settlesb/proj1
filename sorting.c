@@ -1,11 +1,7 @@
 #include  <stdio.h>
+#include "sorting.h"
 void printArray(long arr[], int n);
-void bubbleSort(int arr[], int n);
 void swap(long *xp, long *yp);
-void Shell_Insertion_Sort (long *Array, int Size, double *NComp, double *NMove);
-void Improved_Bubble_Sort (long *Array, int Size, double *NComp, double *NMove);
-long *Load_File (char *Filename, int *Size);
-int Save_File (char *Filename, long *Array, int Size);
 void Save_Seq1 (char *Filename, int N);
 void Save_Seq2 (char *Filename, int N);
 
