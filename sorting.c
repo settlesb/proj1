@@ -24,6 +24,7 @@ void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
             {
                 Array[j] = Array[j - gap];
                 NMove++;
+                NComp++;
             }
              
             Array[j] = temp;
@@ -43,6 +44,7 @@ void Improved_Bubble_Sort (long *Array, int Size, double *NComp, double *NMove)
               swap(&Array[j], &Array[j+1]);
               NMove++;
            }
+           NComp++;
        }
   }
 }
@@ -56,9 +58,10 @@ void swap(long *xp, long *yp)
  
 void printArray(long arr[], int n)
 {
-    for (int i=0; i<n; i++)
+    int i;
+    for (i=0; i<n; i++)
     {
-        printf("%d ", arr[i]);
+        printf("%ld ", arr[i]);
     }
     printf("\n");
 }
