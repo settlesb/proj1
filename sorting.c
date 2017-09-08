@@ -5,6 +5,33 @@ void swap(long *xp, long *yp);
 void Save_Seq1 (char *Filename, int N);
 void Save_Seq2 (char *Filename, int N);
 
+long *Load_File(char *Filename, int *Size)
+{
+    FILE * pFile;
+    pFile = fopen (Filename,"r");
+    fscanf(pFile, "%d\n", Size);
+    int i = 0;
+    long arr[*Size];
+    while(fscanf(pFile, "%ld\n", &arr[i]) == 1)
+    {
+      i++;
+    }
+    fclose(pFile);
+    return arr;
+}
+int Save_File(char *Filename, long *Array, int Size)
+{
+    int i;
+    FILE * pFile;
+    pFile = fopen (Filename,"w");
+    for(i = 0;i<Size;i++)
+    {
+      fprintf(pFile, "%ld \n", Array[i]);
+    }
+    fclose(pFile);
+    return i+1;
+}
+
 void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
 {
     int gap, i;
