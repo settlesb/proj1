@@ -5,10 +5,10 @@
 void swap(long *xp, long *yp);
 void Save_Seq1 (char *Filename, int N);
 void Save_Seq2 (char *Filename, int N);
-int getNextGap(int gap);
+int getGap(int gap);
 int cmpfunc(const void * a, const void * b);
 
-//save_seq need to be called by anything
+//save_seq need to be called by anything?
 
 void Save_Seq1 (char *Filename, int N)
 {
@@ -41,11 +41,11 @@ void Save_Seq2 (char *Filename, int N)
 {
   FILE * pFile;
   pFile = fopen (Filename,"w");
-  int arr[N/40], i = 0;
+  int arr[N], i = 0;
   int gap = N;
   while (gap != 1)
   {
-      gap = getNextGap(gap);
+      gap = getGap(gap);
       arr[i] = gap;
       i++;
   }
@@ -105,7 +105,6 @@ void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
       }
       pow3 = pow3 * 3;
   }
-  arr[ix] = '\0';
   qsort(arr, ix, sizeof(int), cmpfunc);
   int gap, i;
   for (gap = arr[ix-1]; gap > 0; gap = arr[ix-1])
@@ -121,6 +120,10 @@ void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
               *NMove+=1;
               *NComp+=1;
           }
+          if(j >= gap)
+          {
+            *NComp+=1;
+          }
           Array[j] = temp;
           *NMove+=1;
       }
@@ -129,7 +132,7 @@ void Shell_Insertion_Sort(long *Array, int Size, double *NComp, double *NMove)
   free(arr);
   return;
 }
-int getNextGap(int gap)
+int getGap(int gap)
 {
     gap = (gap*10)/13;
     if (gap < 1)
@@ -143,27 +146,27 @@ int getNextGap(int gap)
 void Improved_Bubble_Sort(long *Array, int Size, double *NComp, double *NMove)
 {
     int gap = Size;
-    bool swapped = true;
-    while (gap != 1 || swapped == true)
+    bool s = true;
+    while (gap != 1 || s == true)
     {
-        gap = getNextGap(gap);
-        swapped = false;
+        gap = getGap(gap);
+        s = false;
         for (int i=0; i<Size-gap; i++)
         {
             *NComp+=1;
             if (Array[i] > Array[i+gap])
             {
                 swap(&Array[i], &Array[i+gap]);
-                *NMove+=1;
-                swapped = true;
+                *NMove+=3;
+                s = true;
             }
         }
     }
 }
 void swap(long *xp, long *yp)
 {
-    long temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+    *xp ^= *yp;
+    *yp ^= *xp;
+    *xp ^= *yp;
 }
 
