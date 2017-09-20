@@ -8,7 +8,7 @@ void Save_Seq2 (char *Filename, int N);
 int getGap(int gap);
 int cmpfunc(const void * a, const void * b);
 
-//save_seq need to be called by anything?
+
 
 void Save_Seq1 (char *Filename, int N)
 {
@@ -35,6 +35,7 @@ void Save_Seq1 (char *Filename, int N)
     fprintf(pFile, "%d\n", arr[ix]);
   }
   fclose(pFile);
+  free(arr);
 }
 
 void Save_Seq2 (char *Filename, int N)
