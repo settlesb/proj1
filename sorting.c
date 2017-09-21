@@ -148,11 +148,12 @@ void Improved_Bubble_Sort(long *Array, int Size, double *NComp, double *NMove)
 {
     int gap = Size;
     bool s = true;
+    int i;
     while (gap != 1 || s == true)
     {
         gap = getGap(gap);
         s = false;
-        for (int i=0; i<Size-gap; i++)
+        for (i=0; i<Size-gap; i++)
         {
             *NComp+=1;
             if (Array[i] > Array[i+gap])
